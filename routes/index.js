@@ -11,4 +11,9 @@ router.get('/', function(req, res) {
 router.get('/quizes/question',quizController.question);
 router.get('/quizes/answer',quizController.answer);
 
+/* GET page Author. */
+router.get('/author', function(req, res) {
+  res.render('author', { author: 'Francisco Javier Jardín', info: 'Alumno curso MiriadaX' });
+});
+
 module.exports = router;

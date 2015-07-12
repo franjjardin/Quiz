@@ -34,3 +34,8 @@ footer {
 nav span {
 	margin: 0 10px 0 0;
 }
+.img-circle {
+	border-radius: 10px;
+	max-width: 120px;
+	max-height: 120px;
+}
