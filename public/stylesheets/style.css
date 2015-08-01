@@ -27,6 +27,9 @@ header, nav, section {
 	background: #eee;
 	text-align: center;
 }
+section table {
+	margin: 0 auto;
+}
 footer {
 	background: #eee;
 	text-align: center;
