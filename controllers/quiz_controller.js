@@ -12,13 +12,20 @@ exports.load = function(req, res, next, quizId){
 	).catch(function(error) {next(error);});
 };
 
-// GET /quizes
+// GET /quizes y /quizes?search=
 exports.index = function(req, res) {
-	models.Quiz.findAll().then(
+	var buscar = "";
+	if (req.query.search !== undefined){
+		var searchSQL = req.query.search.replace(' ','%');
+		searchSQL = '%'+searchSQL+'%';
+		buscar = {where: ["pregunta like ?", searchSQL], order: 'pregunta ASC'};
+	}
+	models.Quiz.findAll(buscar).then(
 		function(quizes) {
-			res.render('quizes/index.ejs', { quizes: quizes});
+			res.render('quizes/index', { quizes: quizes});
 		}
-	).catch(function(error){next(error);})
+	).catch(function(error){next(error);
+	});
 };
 
 // GET /quizes/:id
