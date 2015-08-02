@@ -19,7 +19,10 @@ a {
 	margin-bottom: 1px;
 	color: black;
 }
-
+#ErrorMsgs { 
+	color: #f61; 
+	font-size: smaler;
+}
 section > div {
 	padding: 20px;
 }
