@@ -29,6 +29,23 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(partials());
 
+//Para sesion limite de 2 min
+app.use(function(req, res, next) {
+    if(req.session.user){
+        tiempoExpera = 2*60*1000;
+        tiempoActual= new Date(Date.now()-tiempoExpera).getTime();
+        if(req.session.user.tiempo < tiempoActual){
+            delete req.session.user;
+        }else{
+            req.session.user.tiempo=new Date(Date.now()).getTime();
+            req.session.user.actual=tiempoActual;
+            res.locals.session = req.session;
+        }
+    }
+    next(); 
+});
+
+
 //Helpers dinamicos:
 app.use(function(req ,res, next) {
     //guardar path en session.redir para despues de login
