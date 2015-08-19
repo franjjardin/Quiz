@@ -9,7 +9,9 @@
 <div class="col-quizes">
 	<% var i; for(i=0;i<quizes.length;i++){ %>
 		<article>
-			<a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a> -
+			<a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a>
+			<%if(session.user){%>
+			 -
 			<a href="quizes/<%= quizes[i].id %>/edit">Editar</a>
 			<a href="#" onClick="
 				if(confirm('Borrar: <%= quizes[i].pregunta %>')){
@@ -18,7 +20,10 @@
 			">Borrar</a>
 			<form method="POST" action="quizes/<%= quizes[i].id %>?_method=delete" id="FormDelete<%= quizes[i].id %>">
 			</form>
+			<%}%>
 		</article>
 	<% } %>
 </div>
+<%if(session.user){%>
 <a href="/quizes/new">Crear preguntas</a>
+<%}%>
